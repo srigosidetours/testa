@@ -24,7 +24,7 @@ app.get('/api', (req, res) => {
 
 app.get('/titulares', async (req, res) => {
   try {
-    const url = 'https://www.ultimahora.es/';
+    const url = 'https://www.ultimahora.es/sucesos.html';
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);
 
@@ -78,7 +78,7 @@ app.get('/titulares-playwright', async (req, res) => {
   try {
     browser = await chromium.launch({ headless: true }); // Navegador headless
     const page = await browser.newPage();
-    await page.goto('https://www.ultimahora.es', { waitUntil: 'domcontentloaded', timeout: 15000 });
+    await page.goto('https://www.ultimahora.es/sucesos.html', { waitUntil: 'domcontentloaded', timeout: 15000 });
 
     // Cambia el selector si lo deseas (ejemplo: todos los <h2> y <h3>)
     const titulares = await page.evaluate(() => {
